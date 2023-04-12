@@ -1,4 +1,4 @@
-@Library('piper-lib-os') 
+@Library('piper-lib-os') _
 node() {
     stage('prepare') {
         checkout scm
@@ -6,6 +6,11 @@ node() {
     }
 
     stage('build') {
-        mtaBuild script:this
+        mtaBuild script: this
     }
+    
+    stage('deploy') {
+    cloudFoundryDeploy script: this
+    }
+
 }
